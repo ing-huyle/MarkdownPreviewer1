@@ -6,23 +6,15 @@ import { useState, useEffect } from 'react';
 
 const App = () => {
   const [value, setValue] = useState(initialValue);
-  
+  const [isEditorExpanded, setEditorExpanded] = useState(false);
+  const [isPreviewExpanded, setPreviewExpanded] = useState(false);
+
   const handleClickEditor = () => {
-    $('.preview-wrapper').toggleClass('display');
-    $('#editor').toggleClass('min-height-editor');
-    $('#editor').toggleClass('full-height');
-    $('#editor').toggleClass('resize-vertical');
-    $('#editor').toggleClass('resize-none');
-    $('.icon').toggleClass('minimize');
-    $('.icon').toggleClass('maximize');
+    setEditorExpanded((prev) => !prev);
   }
 
   const handleClickPreview = () => {
-    $('.editor-wrapper').toggleClass('display');
-    $('#preview').toggleClass('min-height-preview');
-    $('#preview').toggleClass('full-height');
-    $('.icon').toggleClass('minimize');
-    $('.icon').toggleClass('maximize');
+    setPreviewExpanded((prev) => !prev);
   }
 
   const handleChange = (event) => {
@@ -35,19 +27,32 @@ const App = () => {
 
   return (
     <div className='app-wrapper'>
-      <div className='editor-wrapper'>
+      <div className={`wrapper editor-wrapper ${isPreviewExpanded ? 'display' : ''}`}>
         <div className='titlebar'>
           <div>Editor</div>
-          <div className='icon maximize' onClick={handleClickEditor}></div>
+          <div
+            className={`icon ${isEditorExpanded ? 'minimize' : 'maximize'}`}
+            onClick={handleClickEditor}>
+          </div>
         </div>
-        <textarea id='editor' className='resize-vertical min-height-editor' value={value} onChange={handleChange}></textarea>
+        <textarea
+          id='editor'
+          className={isEditorExpanded ? 'resize-none full-height' : 'resize-vertical min-height-editor'}
+          value={value}
+          onChange={handleChange}></textarea>
       </div>
-      <div className='preview-wrapper'>
+      <div className={`wrapper preview-wrapper ${isEditorExpanded ? 'display' : ''}`}>
         <div className='titlebar'>
           <div>Preview</div>
-          <div className='icon maximize' onClick={handleClickPreview}></div>
+          <div
+            className={`icon ${isPreviewExpanded ? 'minimize' : 'maximize'}`}
+            onClick={handleClickPreview}>
+          </div>
         </div>
-        <div id='preview' className='min-height-preview'></div>
+        <div
+          id='preview'
+          className={isPreviewExpanded ? 'full-height' : 'min-height-preview'}>
+        </div>
     </div>
     </div>
   )

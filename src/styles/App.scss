@@ -6,34 +6,40 @@
 }
 
 .titlebar {
-  font-family: Russo One;
+  font-family: 'Russo One', sans-serif;
   background-color: #4aa3a3;
   display: flex;
   justify-content: space-between;
   align-content: center;
-  padding-block: 0.3rem;
-  padding-inline: 0.6rem;
+  padding: 0.3rem 0.6rem;
   border-bottom: 1px solid #1d2f2f;
 
-  .maximize::after {
+  .maximize::after,
+  .minimize::after {
     font-family: 'Font Awesome 6 Free';
-    content: '\f31e  ';
     font-weight: 600;
   }
-  
+
+  .maximize::after {
+    content: '\f31e  ';
+  }
+
   .icon:hover::after {
     cursor: pointer;
     opacity: .5;
   }
 }
 
-.editor-wrapper {
+.wrapper {
   width: 80vw;
-  max-width: 594px;
   box-shadow: 1px 1px 10px 2px #3a5f5f;
   border: 1px solid #1d2f2f;
   display: flex;
   flex-direction: column;
+}
+
+.editor-wrapper {
+  max-width: 594px;
 
   #editor {
     font-size: 1.1em;
@@ -45,17 +51,11 @@
 }
 
 .preview-wrapper {
-  width: 80vw;
   max-width: 800px;
-  box-shadow: 1px 1px 10px 2px #3a5f5f;
-  border: 1px solid #1d2f2f;
-  display: flex;
-  flex-direction: column;
 
   #preview {
     width: 100%;
-    padding-block: 10px;
-    padding-inline: 20px;
+    padding: 10px 20px;
     background-color: #c0d8d8;
     transition: min-height 350ms ease-in-out;
 
@@ -124,7 +124,5 @@
 }
 
 .minimize::after {
-  font-family: 'Font Awesome 6 Free';
   content: '\f78c  ';
-  font-weight: 600;
 }
