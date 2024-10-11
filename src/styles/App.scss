@@ -16,7 +16,7 @@
   border-bottom: 1px solid #1d2f2f;
 
   .maximize::after {
-    font-family: "Font Awesome 6 Free";
+    font-family: 'Font Awesome 6 Free';
     content: '\f31e  ';
     font-weight: 600;
   }
@@ -124,7 +124,7 @@
 }
 
 .minimize::after {
-  font-family: "Font Awesome 6 Free";
+  font-family: 'Font Awesome 6 Free';
   content: '\f78c  ';
   font-weight: 600;
 }
